@@ -1,31 +1,44 @@
 package com.OneLab.Practice1.repository;
 
 import com.OneLab.Practice1.model.Customer;
-import lombok.Builder;
-import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@Builder
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
-    private List<Customer> customerList = new ArrayList<>();
 
-    @Override
-    public Customer findById(Long id) {
-        return customerList.stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
-    }
+    private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public List<Customer> findAll() {
-        return customerList;
+    public CustomerRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public void save(Customer customer) {
-        customerList.add(customer);
+        String sql = "INSERT INTO customer (id, name, email, password) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, customer.getId(), customer.getName(), customer.getEmail(), customer.getPassword());
+    }
+
+    @Override
+    public Customer findById(Long id) {
+        String sql = "SELECT * FROM customer WHERE id = ?";
+        return jdbcTemplate.queryForObject(
+                sql,
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Customer.class)
+        );
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        String sql = "SELECT * FROM customer";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
     }
 }
+
+
 

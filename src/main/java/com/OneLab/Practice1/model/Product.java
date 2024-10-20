@@ -1,14 +1,17 @@
 package com.OneLab.Practice1.model;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.*;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     private Long id;
-    private String productName;
-    private String productDescription;
-    private int articul;
-    private int quantity;
-    private double price;
+    private String name;
+    private Double price;
 }
+
 

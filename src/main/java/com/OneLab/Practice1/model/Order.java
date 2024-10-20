@@ -1,16 +1,16 @@
 package com.OneLab.Practice1.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
     private Long id;
-    private List<Product> products;
     private String orderNumber;
-    private Customer customer;
     private int totalPrice;
+    private List<Product> products;
 }
 
