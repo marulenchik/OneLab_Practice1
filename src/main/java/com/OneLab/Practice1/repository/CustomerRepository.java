@@ -1,11 +1,7 @@
 package com.OneLab.Practice1.repository;
 
 import com.OneLab.Practice1.model.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface CustomerRepository {
-    void save(Customer customer);
-    Customer findById(Long id);
-    List<Customer> findAll();
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }
