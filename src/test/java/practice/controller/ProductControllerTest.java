@@ -1,10 +1,9 @@
-package com.OneLab.Practice1.controller;
+package practice.controller;
 
-import com.OneLab.Practice1.service.JMSKafkaProducer;
+import practice.service.JMSKafkaProducer;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.beans.factory.annotation.Autowired;

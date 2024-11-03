@@ -1,4 +1,4 @@
-package com.OneLab.Practice1.model;
+package practice.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;

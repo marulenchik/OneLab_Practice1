@@ -1,6 +1,6 @@
-package com.OneLab.Practice1.repository;
+package practice.repository;
 
-import com.OneLab.Practice1.model.Product;
+import practice.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {

@@ -1,8 +1,8 @@
-package com.OneLab.Practice1.controller;
+package practice.controller;
 
-import com.OneLab.Practice1.model.Customer;
-import com.OneLab.Practice1.model.Order;
-import com.OneLab.Practice1.service.CustomerService;
+import practice.model.Customer;
+import practice.model.Order;
+import practice.service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

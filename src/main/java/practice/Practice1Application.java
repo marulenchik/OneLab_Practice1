@@ -1,4 +1,4 @@
-package com.OneLab.Practice1;
+package practice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

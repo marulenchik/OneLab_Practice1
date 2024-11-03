@@ -1,4 +1,4 @@
-package com.OneLab.Practice1.config;
+package practice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = "com.OneLab.Practice1")
+@ComponentScan(basePackages = "practice")
 @EnableAspectJAutoProxy
 public class DBConfig {
 

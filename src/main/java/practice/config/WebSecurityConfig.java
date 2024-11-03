@@ -1,4 +1,4 @@
-package com.OneLab.Practice1.config;
+package practice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

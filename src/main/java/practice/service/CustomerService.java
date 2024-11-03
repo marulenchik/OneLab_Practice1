@@ -1,9 +1,9 @@
-package com.OneLab.Practice1.service;
+package practice.service;
 
-import com.OneLab.Practice1.model.Customer;
-import com.OneLab.Practice1.model.Order;
-import com.OneLab.Practice1.repository.CustomerRepository;
-import com.OneLab.Practice1.repository.OrderRepository;
+import practice.model.Customer;
+import practice.model.Order;
+import practice.repository.CustomerRepository;
+import practice.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

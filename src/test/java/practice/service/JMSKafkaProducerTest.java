@@ -1,4 +1,4 @@
-package com.OneLab.Practice1.service;
+package practice.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

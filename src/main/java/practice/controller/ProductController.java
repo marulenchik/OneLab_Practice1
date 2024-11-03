@@ -1,6 +1,6 @@
-package com.OneLab.Practice1.controller;
+package practice.controller;
 
-import com.OneLab.Practice1.service.JMSKafkaProducer;
+import practice.service.JMSKafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

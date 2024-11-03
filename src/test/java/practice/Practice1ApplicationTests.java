@@ -1,4 +1,4 @@
-package com.OneLab.Practice1;
+package practice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.OneLab.Practice1.service;
+package practice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class JMSKafkaProducer {
 
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    public JMSKafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     private static final String PRODUCT_NOTIFICATION_TOPIC = "new_product_notifications";
 

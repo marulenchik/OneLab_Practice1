@@ -1,11 +1,7 @@
-package com.OneLab.Practice1.aop;
+package practice.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
-import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,33 +26,40 @@ public class LoggingAspect {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Before advice
-    @Before("execution(* com.OneLab.Practice1.repository.*.*(..))")
+    @Before("execution(* practice.repository.*.*(..))")
     public void beforeRepositoryMethod() {
-        System.out.println("Before executing repository method");
+        logger.info("Before executing repository method");
     }
 
     // After advice
-    @After("execution(* com.OneLab.Practice1.repository.*.*(..))")
+    @After("execution(* practice.repository.*.*(..))")
     public void afterRepositoryMethod() {
-        System.out.println("After executing repository method");
+        logger.info("After executing repository method");
     }
 
     // AfterReturning advice
-    @AfterReturning(pointcut = "execution(* com.OneLab.Practice1.repository.*.*(..))", returning = "result")
+    @AfterReturning(pointcut = "execution(* practice.repository.*.*(..))", returning = "result")
     public void afterReturningRepositoryMethod(Object result) {
-        System.out.println("Repository method returned: " + result);
+        logger.info("Repository method returned: {}", result);
     }
 
     // AfterThrowing advice
-    @AfterThrowing(pointcut = "execution(* com.OneLab.Practice1.repository.*.*(..))", throwing = "ex")
+    @AfterThrowing(pointcut = "execution(* practice.repository.*.*(..))", throwing = "ex")
     public void afterThrowingRepositoryMethod(Exception ex) {
-        System.out.println("An exception has been thrown: " + ex.getMessage());
+        logger.info("An exception has been thrown: {}", ex.getMessage());
+    }
+
+    // Define a dedicated exception
+    public static class RepositoryMethodException extends Exception {
+        public RepositoryMethodException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 
     // Around advice
-    @Around("execution(* com.OneLab.Practice1.repository.*.*(..))")
+    @Around("execution(* practice.repository.*.*(..))")
     public Object aroundRepositoryMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("Around advice: Before method execution");
+        logger.info("Around advice: Before method execution");
 
         long startTime = System.currentTimeMillis();
 
@@ -65,12 +68,11 @@ public class LoggingAspect {
         try {
             result = joinPoint.proceed(); // Proceed to the next advice or target method
         } catch (Exception ex) {
-            System.out.println("Around advice: Exception caught: " + ex.getMessage());
-            throw ex;
+            throw new RepositoryMethodException("Exception in around advice for method: " + joinPoint.getSignature(), ex);
         }
 
         long timeTaken = System.currentTimeMillis() - startTime;
-        System.out.println("Around advice: After method execution. Time taken: " + timeTaken + " ms");
+        logger.info("Around advice: After method execution. Time taken: {} ms", timeTaken);
 
         return result;
     }
@@ -115,8 +117,8 @@ public class LoggingAspect {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
+            if (principal instanceof UserDetails userDetails) {
+                username = userDetails.getUsername();
             } else {
                 username = principal.toString();
             }
@@ -124,4 +126,3 @@ public class LoggingAspect {
         return username;
     }
 }
-

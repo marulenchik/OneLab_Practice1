@@ -1,6 +1,6 @@
-package com.OneLab.Practice1.repository;
+package practice.repository;
 
-import com.OneLab.Practice1.model.Order;
+import practice.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
