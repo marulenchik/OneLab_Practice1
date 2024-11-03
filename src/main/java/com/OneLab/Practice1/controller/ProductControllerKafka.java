@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products")
-public class ProductController {
+public class ProductControllerKafka {
 
     private JMSKafkaProducer producer;
 
     @Autowired
-    ProductController(JMSKafkaProducer producer) {
+    ProductControllerKafka(JMSKafkaProducer producer) {
         this.producer = producer;
     }
 

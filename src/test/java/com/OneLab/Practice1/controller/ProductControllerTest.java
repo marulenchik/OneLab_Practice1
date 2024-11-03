@@ -4,7 +4,6 @@ import com.OneLab.Practice1.service.JMSKafkaProducer;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ProductController.class)
+@WebMvcTest(ProductControllerKafka.class)
 class ProductControllerTest {
 
     @Autowired
@@ -23,7 +22,7 @@ class ProductControllerTest {
     private JMSKafkaProducer producer;
 
     @InjectMocks
-    private ProductController productController;
+    private ProductControllerKafka productController;
 
     @Test
     void testAddProductEndpoint() throws Exception {
